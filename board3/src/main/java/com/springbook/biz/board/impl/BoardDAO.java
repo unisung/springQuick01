@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.springbook.biz.BoardVO;
 import com.springbook.biz.common.JDBCUtil;
@@ -21,8 +22,9 @@ public class BoardDAO {
 	private ResultSet rs=null;
 
 	//SQL명령어
-	private final String BOARD_INSERT="insert into board(seq,title,writer,content) values((select nvl(max(seq),0)+1 from board),?,?,?)";
+	private final String BOARD_INSERT="insert into board(seq,title,writer,content,uploadFile) values((select nvl(max(seq),0)+1 from board),?,?,?,?)";
 	private final String BOARD_UPDATE="update board set title=?,content=? where seq=?";
+	private final String BOARD_UPDATE_UPLOADFILE="update board set title=?,content=?,uploadFile=? where seq=?";
 	private final String BOARD_DELETE="delete from board where seq=?";
 	private final String BOARD_GET="select * from board where seq=?";
 	//private final String BOARD_LIST="select * from board order by seq desc";
@@ -40,6 +42,7 @@ public class BoardDAO {
 			pstmt.setString(1, vo.getTitle());
 			pstmt.setString(2, vo.getWriter());
 			pstmt.setString(3, vo.getContent());
+			pstmt.setString(4,vo.getUploadFile().getOriginalFilename());
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -111,6 +114,7 @@ public class BoardDAO {
 			    	 board.setContent(rs.getString("content"));
 			    	 board.setRegDate(rs.getDate("regdate"));
 			    	 board.setCnt(rs.getInt("cnt"));
+			    	 board.setImages("c:/upload/"+rs.getString("uploadFile"));
 			     } 
 		  }catch(Exception e) {
 			  e.printStackTrace();
@@ -124,10 +128,21 @@ public class BoardDAO {
 	   System.out.println("===>JDBC로 updateBoard()기능 처리");
 	   try {
 		   conn=JDBCUtil.getConnection();
-		   pstmt=conn.prepareStatement(BOARD_UPDATE);
-		   pstmt.setString(1, vo.getTitle());
-		   pstmt.setString(2, vo.getContent());
-		   pstmt.setInt(3, vo.getSeq());
+		   //수정시 getBoard.jsp에서 uploadFile이 넘어오면  파일경로 수정
+		   //안넘어오면 그대로 처리
+		   MultipartFile uploadFile = vo.getUploadFile();
+		   if(!uploadFile.isEmpty()) {
+			   pstmt=conn.prepareStatement(BOARD_UPDATE_UPLOADFILE);
+			   pstmt.setString(1, vo.getTitle());
+			   pstmt.setString(2, vo.getContent());
+			   pstmt.setString(3, uploadFile.getOriginalFilename());
+			   pstmt.setInt(4, vo.getSeq());
+		   }else {
+		       pstmt=conn.prepareStatement(BOARD_UPDATE);
+		       pstmt.setString(1, vo.getTitle());
+		       pstmt.setString(2, vo.getContent());
+		       pstmt.setInt(3, vo.getSeq());
+		   }
 		   pstmt.executeUpdate();
 	   }catch(Exception e) {
 		   e.printStackTrace();

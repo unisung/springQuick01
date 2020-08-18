@@ -2,6 +2,8 @@ package com.springbook.biz;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class BoardVO {
 	private int seq;
 	private String title;
@@ -9,9 +11,25 @@ public class BoardVO {
 	private String content;
 	private Date regDate;
 	private int cnt;
+	private MultipartFile uploadFile;
+	private String images;
+
 	
 	private String searchCondition;
 	private String searchKeyword;
+	
+	public String getImages() {
+		return images;
+	}
+	public void setImages(String images) {
+		this.images = images;
+	}
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
 	
 	public String getSearchCondition() {
 		return searchCondition;
