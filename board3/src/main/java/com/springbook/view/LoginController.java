@@ -3,6 +3,7 @@ package com.springbook.view;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.annotation.Annotation;
 import java.security.Principal;
 import java.util.Enumeration;
 import java.util.Locale;
@@ -24,9 +25,9 @@ import com.springbook.biz.user.UserVO;
 import com.springbook.biz.user.impl.UserDAO;
 
 @Controller//콘트롤러
-public class LoginController {
+public class LoginController{
 	//HandlerMapping
-	@RequestMapping(value="/login.do",method=RequestMethod.GET)
+	@RequestMapping(value="/login.do", method = RequestMethod.GET)
    public String loginView(HttpServletRequest request) {//Model.addAttribute("user", vo)
 	   System.out.println("로그인 화면으로 이동....");
 	   UserVO vo=new UserVO();
@@ -46,10 +47,17 @@ public class LoginController {
 	// id,password값이 설정된 UserVO가 넘어옴
 	@RequestMapping(value="/login.do", method = RequestMethod.POST)
 	public String login(UserVO vo, UserDAO userDAO, HttpSession session) {
+		System.out.println("아이디:"+vo.getId());
+		System.out.println("패스워드:"+vo.getPassword());
+		/*
+		 * String id=request.getParameter("id"); String
+		 * pwd=request.getParamenter("password");
+		 */
 		if(vo.getId()==null|| vo.getId().equals("")) {
 			throw new IllegalArgumentException("아이디는 반드시 입력해햐 합니다.");	
 		}
 		UserVO user = userDAO.getUser(vo);
+		
 		if(user!=null) {
 			session.setAttribute("useName", user.getName());
 			System.out.println("userName:"+user.getName());
@@ -58,4 +66,5 @@ public class LoginController {
 			return "login.jsp";
 		}
 	}
+	
 }
