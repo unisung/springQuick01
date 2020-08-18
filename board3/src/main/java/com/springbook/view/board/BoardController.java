@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.springbook.biz.BoardVO;
@@ -20,6 +21,12 @@ public class BoardController {
 		return "getBoardList.do";
 	}
 	
+	//글 목록 검색
+	@RequestMapping("/getBoardList.do")
+	public String getBoardList(BoardVO vo, Model model) {//Model:view 로 객체 전달.
+		model.addAttribute("boardList", boardService.getBoardList(vo));
+		return "getBoardList.jsp";
+	}
 	
 
 }
