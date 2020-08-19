@@ -32,15 +32,15 @@ public class LoginController{
 	   System.out.println("로그인 화면으로 이동....");
 	   UserVO vo=new UserVO();
 	   
-	   vo.setId("kim");
-	   vo.setPassword("kim1234");
-	   vo.setName("홍길동");
-	   vo.setRole("admin");
+	   //vo.setId("kim");
+	   //vo.setPassword("kim1234");
+	   //vo.setName("홍길동");
+	  // vo.setRole("admin");
 	   
 	   HttpSession session=request.getSession();
 	   //Model.addAttribute("user", vo);
 	  //request.setAttribute("user", vo);
-	   session.setAttribute("user", vo);
+	  /// session.setAttribute("user", vo);
 	 
 	   return "login.jsp";
    }
