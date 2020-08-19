@@ -53,6 +53,7 @@ public class LoginController{
 		 * String id=request.getParameter("id"); String
 		 * pwd=request.getParamenter("password");
 		 */
+		   
 		if(vo.getId()==null|| vo.getId().equals("")) {
 			throw new IllegalArgumentException("아이디는 반드시 입력해햐 합니다.");	
 		}
