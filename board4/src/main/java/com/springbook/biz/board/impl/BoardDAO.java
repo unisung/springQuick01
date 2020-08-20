@@ -14,7 +14,7 @@ import com.springbook.biz.BoardVO;
 import com.springbook.biz.common.JDBCUtil;
 
 //@Component("boardDAO")
-@Repository("boardDAO")
+//@Repository("boardDAO")
 public class BoardDAO {
 	//JDBC관련 변수
 	private Connection conn=null;

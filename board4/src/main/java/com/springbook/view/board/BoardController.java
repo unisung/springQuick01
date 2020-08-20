@@ -56,6 +56,7 @@ public class BoardController {
 		if(!uploadFile.isEmpty()) {
 			String fileName=uploadFile.getOriginalFilename();
 			uploadFile.transferTo(new File("c:/upload/"+fileName));//지정경로로 파일 저장
+			vo.setImages(fileName);
 		}
 		boardService.insertBoard(vo);
 		return "getBoardList.do";
@@ -101,7 +102,8 @@ public class BoardController {
 		if(!uploadFile.isEmpty()) {
 			String fileName=uploadFile.getOriginalFilename();
 			uploadFile.transferTo(new File("c:/upload/"+fileName));//지정경로로 파일 저장
-				}
+			vo.setImages(fileName);
+		}
 		boardService.updateBoard(vo);
         return "getBoardList.do";		
 	}

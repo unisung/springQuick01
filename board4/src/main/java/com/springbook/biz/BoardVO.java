@@ -1,16 +1,17 @@
 package com.springbook.biz;
 
 import java.sql.Date;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAnyAttribute;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.web.multipart.MultipartFile;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class BoardVO {
-	@XmlAnyAttribute
+	@XmlAttribute
 	private int seq;
 	private String title;
 	private String writer;

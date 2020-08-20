@@ -19,7 +19,7 @@
   
   <tr>
    <td bgcolor="orange">작성자</td>
-   <td align="left"><input type="text" name="writer" size="10" value="${user.name}"></td>
+   <td align="left"><input type="text" name="writer" size="10" value="${useName}"></td>
   </tr>
   
   <tr>
