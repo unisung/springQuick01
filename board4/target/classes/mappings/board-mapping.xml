@@ -5,8 +5,58 @@
  
 <mapper namespace="BoardDAO">
  
- <select id="selectBlog" parameterType="int" resultType="Blog">
- select * from Blog where id = #{id}
+ <insert id="insertBoard" parameterType="board">
+ <![CDATA[
+  insert into board(seq,title,writer,content,uploadFile) 
+ values((select nvl(max(seq),0)+1 from board),
+         #{title},#{writer},#{content},#{uploadFile})
+  ]]>      
+ </insert>
+ 
+ <select id="getBoardList">
+    select * from board where 1=1
+    <if test="searchCondition=='TITLE'">
+         title like '%'||#{searchKeyword}||'%'
+    </if>
+    <if test="searchCondition=='CONTENT'">
+         content like '%'||#{searchKeyword}||'%'
+    </if>
+    order by seq desc
  </select>
+ 
+ <update id="updateBoard" parameterType="board">
+ <![CDATA[
+update board 
+      set title=#{title},content=#{content},
+            uploadFile=#{uploadFile} 
+ where seq=#{seq}
+  ]]> 
+ </update>
+ 
+ <update id="updateBoard2" parameterType="board">
+  <![CDATA[
+update board 
+      set title=#{title},content=#{content}
+ where seq=#{seq}
+  ]]> 
+ </update>
+ 
+ <delete id="deleteBoard" parameterType="board">
+  <![CDATA[
+     delete form board where seq=#{seq}
+    ]]>
+ </delete>
+ 
+ <select id="getBoard" resultType="board">
+ <![CDATA[
+   select * from board where seq=#{seq}
+  ]]>  
+ </select>
+ 
+ <update id="updateBoardCnt" parameterType="board">
+   <![CDATA[
+   	update board set cnt=cnt+1 where seq=#{seq}
+   ]]>
+ </update>
  
 </mapper>

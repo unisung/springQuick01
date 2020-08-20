@@ -44,6 +44,18 @@
      </tx:attributes>
   </tx:advice>
   
+<!-- Spring과 Mybatis 연동 설정 -->  
+ <bean id="sqlSession" 
+       class="org.mybatis.spring.SqlSessionFactoryBean">
+     <property name="dataSource" ref="dataSource"/>
+     <property name="configLocation" ref="classpath:sql-map-config.xml"/> 
+ </bean>
+ 
+ <bean class="org.mybatis.spring.SqlSessionTemplate">
+     <constructor-arg ref="sqlSession"></constructor-arg>  
+ </bean>
+  
+  
   <aop:config>
   		<aop:pointcut expression="execution(* com.springbook.biz..*Impl.*(..))" 
   		                       id="txPointcut"/>
