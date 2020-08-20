@@ -38,7 +38,7 @@
 
    <tr>
     <td bgcolor="orange">파일</td>
-    <td><input type="file" name="uploadFile" id="uploadFile"><img id="foo" src="${board.images}"></td>
+    <td><input type="file" name="uploadFile" id="uploadFile"><img id="foo" src="/img/${board.images}"></td>
    </tr>
    
   <tr>

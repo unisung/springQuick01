@@ -15,7 +15,9 @@ public class BoardVO {
 	private String title;
 	private String writer;
 	private String content;
+	@XmlTransient
 	private Date regDate;
+	@XmlTransient
 	private int cnt;
 	@XmlTransient
 	private MultipartFile uploadFile;

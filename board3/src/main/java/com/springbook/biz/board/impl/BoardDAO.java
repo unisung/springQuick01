@@ -114,7 +114,8 @@ public class BoardDAO {
 			    	 board.setContent(rs.getString("content"));
 			    	 board.setRegDate(rs.getDate("regdate"));
 			    	 board.setCnt(rs.getInt("cnt"));
-			    	 board.setImages("c:/upload/"+rs.getString("uploadFile"));
+			    	 board.setImages(rs.getString("uploadFile"));
+			    	 //board.setImages("c:/upload/"+rs.getString("uploadFile"));
 			     } 
 		  }catch(Exception e) {
 			  e.printStackTrace();

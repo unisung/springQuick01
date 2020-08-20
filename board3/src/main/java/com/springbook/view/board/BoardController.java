@@ -2,9 +2,12 @@ package com.springbook.view.board;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,11 +33,9 @@ public class BoardController {
 	public BoardListVO dataTransformX(BoardVO vo) {
 		vo.setSearchCondition("TITLE");
 		vo.setSearchKeyword("");
-		
-		List<BoardVO> boardList =  boardService.getBoardList(vo);
-		BoardListVO boardListVO=new BoardListVO();
+		List<BoardVO> boardList = boardService.getBoardList(vo);
+		BoardListVO boardListVO = new BoardListVO();
 		boardListVO.setBoardList(boardList);
-		
 		return boardListVO;
 	}
 	
