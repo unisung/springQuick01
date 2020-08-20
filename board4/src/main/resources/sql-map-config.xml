@@ -4,6 +4,11 @@
  "http://mybatis.org/dtd/mybatis-3-config.dtd">
  
 <configuration>
+
+<typeAliases>
+ <typeAlias type="com.springbook.biz.BoardVO" alias="board"/>
+</typeAliases>
+<!-- 
 <properties resource="config/database.properties"/>
 
  <environments default="development">
@@ -19,7 +24,7 @@
  </dataSource>
  
  </environment>
- </environments>
+ </environments> -->
  
  <mappers>
  <mapper resource="mappings/board-mapping.xml"/>
