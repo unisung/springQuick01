@@ -28,6 +28,6 @@ insert into roles values ('admin','admin','관리자권한');
 insert into roles values ('user','user','일반권한');
 insert into roles values ('operation','operation','사용자권한');
 
-
+select * from users;
 
 

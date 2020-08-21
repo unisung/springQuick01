@@ -4,14 +4,34 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="UserDAO">
+<!-- 회원정보 조회 -->
  <select id="getUser" 
              parameterType="user" 
              resultType="user">
+<![CDATA[             
  select * from users where id=#{id} and password=#{password}
+ ]]>
  </select>
  
+ <!-- 회원가입 -->
  <insert id="registerUser" parameterType="user">
+ <![CDATA[
    insert into users values (#{id},#{password},#{name},#{role})
+   ]]>
  </insert>
  
+ <!-- 권한 조회 -->
+ <select id="getRoles" resultType="role">
+ <![CDATA[
+    select * from roles
+    ]]>
+ </select>
+ 
+ <!-- 회원정보 수정 -->
+ <update id="updateUser" parameterType="user">
+ <![CDATA[
+   update users set name=#{name}, role=#{role} where id=#{id}
+   ]]>
+ </update>
+
 </mapper>

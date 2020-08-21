@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html><html><head><meta charset="UTF-8">
 <title><spring:message code="message.user.login.updateBtn"/></title>
@@ -28,7 +29,7 @@ function chk(){
   </a>
   
   <hr>
-  <form action="register.do" method="post" onsubmit="return chk()">
+  <form action="updateInfo.do" method="post" onsubmit="return chk()">
      <table border="1" cellpadding="0" cellspacing="0">
        <tr>
         <td bgcolor="orange"><spring:message code="message.user.login.id"/></td>
@@ -48,11 +49,17 @@ function chk(){
        </tr>
        <tr>
          <td bgcolor="orange"><spring:message code="message.user.login.role"/></td>
-         <td><input type="text" name="role" value="${user.role}"></td>
+         <td>
+         <select name="role">
+          <c:forEach var="role" items="${roleMap}">
+             <option value="${role.key}" <c:if test="${role.key==user.role}">selected</c:if>> ${role.value}</option>
+          </c:forEach>
+         </select>                  
+         </td>
        </tr>
        <tr>
        	<td colspan="2" align="center">
-       		<input type="submit" value='<spring:message code="message.user.login.registBtn"/>'/> 
+       		<input type="submit" value='<spring:message code="message.user.login.updateBtn"/>'/> 
        	</td>
        </tr>
      </table>

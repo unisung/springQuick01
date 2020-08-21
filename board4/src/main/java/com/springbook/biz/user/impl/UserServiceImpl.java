@@ -30,4 +30,9 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getRoles();
 	}
 
+	@Override
+	public void updateUser(UserVO vo) {
+		userDAO.updateUser(vo);
+	}
+
 }

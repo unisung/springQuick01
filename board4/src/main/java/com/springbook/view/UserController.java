@@ -48,4 +48,16 @@ public class UserController {
 		roleMap=userService.getRoles();
 		return roleMap;
 	}
+	
+	//회원정보 수정처리 후 로그인 페이지로 이동
+		@RequestMapping(value="/updateInfo.do",method=RequestMethod.POST)
+		public String updateInfoPro(UserVO vo) {
+			//if 패스워드가 맞으면 db수정, 아니면 이전으로 이동.
+			
+			//db수정처리
+			userService.updateUser(vo);
+			return "redirect:logout.do";
+		}
+	
+	
 }
