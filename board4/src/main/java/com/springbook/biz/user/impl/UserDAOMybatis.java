@@ -48,7 +48,7 @@ public Map<String, String> getRoles() {
 
 public void updateUser(UserVO vo) {
 	System.out.println("===> Mybatis로 updateUser() 기능 처리");
-	mybatis.insert("UserDAO.updateUser", vo);
+	mybatis.update("UserDAO.updateUser", vo);
 }
  
 	

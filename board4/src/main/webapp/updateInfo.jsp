@@ -21,10 +21,10 @@ function chk(){
 <center>
   <h1><spring:message code="message.user.login.updateBtn"/> </h1>
   
-  <a href="?lang=en">
+  <a href="?lang=en&id=${user.id}&password=${user.password}">
   <spring:message code="message.user.login.language.en"/>
   </a>&nbsp;&nbsp;
-  <a href="?lang=ko">
+  <a href="?lang=ko&id=${user.id}&password=${user.password}">
   <spring:message code="message.user.login.language.ko"/>
   </a>
   

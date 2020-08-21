@@ -39,6 +39,9 @@ public class UserController {
 	public String updateInfoForm(UserVO vo,Model model) {
 		System.out.println("수정:"+vo);
 		model.addAttribute("user", userService.getUser(vo));
+		//vo=userService.getUser(vo);
+		
+		System.out.println("vo:"+vo);
 		return "updateInfo.jsp";
 	}
 	
@@ -51,13 +54,17 @@ public class UserController {
 	
 	//회원정보 수정처리 후 로그인 페이지로 이동
 		@RequestMapping(value="/updateInfo.do",method=RequestMethod.POST)
-		public String updateInfoPro(UserVO vo) {
+		public String updateInfoPro(@ModelAttribute("user")UserVO vo,Model model) {
 			//if 패스워드가 맞으면 db수정, 아니면 이전으로 이동.
-			
-			//db수정처리
-			userService.updateUser(vo);
-			return "redirect:logout.do";
+			UserVO user=userService.getUser(vo);
+			if(user!=null) {
+				//db수정처리
+				userService.updateUser(vo);
+				return "redirect:logout.do";	
+			}else {
+				//model.addAttribute("user", vo);
+				return "updateInfo.jsp";
+			}
 		}
-	
-	
+
 }
