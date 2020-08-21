@@ -1,8 +1,23 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<!DOCTYPE html><html>
-<head>
-<meta charset="UTF-8">
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<script>
+function chk(){
+	var id=document.forms[0].id.value;
+	var pass=document.forms[0].password.value;
+	if(id==''){
+		alert('아이디를 입력하세요');
+		document.forms[0].id.focus();
+		return false;
+	}
+	if(pass==''){
+		alert('비밀번호를 입력하세요');
+		 document.forms[0].password.focus();
+		 return false;
+	}
+	location.href='updateInfo.do?id='+id+'&password='+pass;
+}
+</script>
 <title><spring:message code="message.user.login.title"/></title>
 </head>
 <body>
@@ -38,7 +53,10 @@
        <tr>
        	<td colspan="2" align="center">
        		<input type="submit" value='<spring:message code="message.user.login.loginBtn"/>'/>
-       		<input type="button" value='<spring:message code="message.user.login.registBtn"/>' onclick="location.href='register.do'"/> 
+       		<input type="button" value='<spring:message code="message.user.login.registBtn"/>' onclick="location.href='register.do'"/>
+       		<input type="button" 
+       		         value='<spring:message code="message.user.login.updateBtn"/>' 
+       		       onclick="return chk()"/> 
        	</td>
        </tr>
      </table>

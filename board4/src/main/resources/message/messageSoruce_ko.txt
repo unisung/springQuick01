@@ -4,8 +4,10 @@ message.user.login.id=아이디
 message.user.login.password=비밀번호
 message.user.login.passwordCofirm=비밀번호확인
 message.user.login.name=이름
+message.user.login.role=권한
 message.user.login.loginBtn=로그인
 message.user.login.registBtn=회원가입
+message.user.login.updateBtn=회원정보수정
 
 message.user.login.language.en=영어
 message.user.login.language.ko=한글

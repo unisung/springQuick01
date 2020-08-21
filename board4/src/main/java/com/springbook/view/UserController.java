@@ -1,7 +1,12 @@
 package com.springbook.view;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -27,5 +32,20 @@ public class UserController {
 		userService.register(vo);
 		
 		return "redirect:login.do";
+	}
+	
+	//회원정보 수정 페이지로 이동
+	@RequestMapping(value="/updateInfo.do",method=RequestMethod.GET)
+	public String updateInfoForm(UserVO vo,Model model) {
+		System.out.println("수정:"+vo);
+		model.addAttribute("user", userService.getUser(vo));
+		return "updateInfo.jsp";
+	}
+	
+	@ModelAttribute("roleMap")
+	public Map<String,String> searchConditionMap(){
+		Map<String,String> roleMap =new HashMap<>();
+		roleMap=userService.getRoles();
+		return roleMap;
 	}
 }

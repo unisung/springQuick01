@@ -1,5 +1,7 @@
 package com.springbook.biz.user.impl;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void register(UserVO vo) {
 		userDAO.register(vo);
+	}
+
+	@Override
+	public Map<String, String> getRoles() {
+		return userDAO.getRoles();
 	}
 
 }
