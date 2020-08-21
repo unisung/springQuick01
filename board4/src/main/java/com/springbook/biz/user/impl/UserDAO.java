@@ -17,7 +17,7 @@ public class UserDAO {
 	
 	private final String USER_GET ="select * from users where id=? and password=?";
 
-	public UserVO getUser(UserVO vo) {
+	public UserVO getUser(UserVO vo) {//Integer,String, UserVO,BoardVO,
 		 UserVO user=null;
 		 try {
 			   System.out.println("===>JDBC로 getUser() 기능 처리");
