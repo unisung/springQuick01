@@ -10,4 +10,8 @@
  select * from users where id=#{id} and password=#{password}
  </select>
  
+ <insert id="registerUser" parameterType="user">
+   insert into users values (#{id},#{password},#{name},#{role})
+ </insert>
+ 
 </mapper>

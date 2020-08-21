@@ -19,6 +19,12 @@ public class UserDAOMybatis {
 	 //return user;
 	 return mybatis.selectOne("UserDAO.getUser", vo);
  }
+
+ //회원가입
+public void register(UserVO vo) {
+	System.out.println("===> Mybatis로 registerUser() 기능 처리");
+    mybatis.insert("UserDAO.registerUser", vo);
+}
  
 	
 }

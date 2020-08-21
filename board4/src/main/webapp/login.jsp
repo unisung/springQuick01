@@ -9,10 +9,10 @@
 <center>
   <h1><spring:message code="message.user.login.title"/> </h1>
   
-  <a href="login.do?lang=en">
+  <a href="?lang=en">
   <spring:message code="message.user.login.language.en"/>
   </a>&nbsp;&nbsp;
-  <a href="login.do?lang=ko">
+  <a href="?lang=ko">
   <spring:message code="message.user.login.language.ko"/>
   </a>
   
@@ -38,6 +38,7 @@
        <tr>
        	<td colspan="2" align="center">
        		<input type="submit" value='<spring:message code="message.user.login.loginBtn"/>'/>
+       		<input type="button" value='<spring:message code="message.user.login.registBtn"/>' onclick="location.href='register.do'"/> 
        	</td>
        </tr>
      </table>
