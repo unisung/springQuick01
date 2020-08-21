@@ -50,6 +50,11 @@ public void updateUser(UserVO vo) {
 	System.out.println("===> Mybatis로 updateUser() 기능 처리");
 	mybatis.update("UserDAO.updateUser", vo);
 }
+
+public void deleteUser(String id) {
+  System.out.println("===> Mybatis로 deleteUser() 기능 처리");
+  mybatis.delete("UserDAO.deleteUser", id);
+}
  
 	
 }

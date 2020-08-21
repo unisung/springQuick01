@@ -15,6 +15,14 @@ function chk(){
 		return false;
 	}
 }
+function deleteUser(id){
+	var yesno =confirm(id+"회원님 정말 탈퇴하시겠습니까?");
+	if(yesno){
+		location.href='deleteUser.do?id='+id;//GET
+	}else{
+		return;
+	}
+}
 </script>
 </head>
 <body>
@@ -59,7 +67,9 @@ function chk(){
        </tr>
        <tr>
        	<td colspan="2" align="center">
-       		<input type="submit" value='<spring:message code="message.user.login.updateBtn"/>'/> 
+       		<input type="submit" value='<spring:message code="message.user.login.updateBtn"/>'/>
+       		<input type="button" value='<spring:message code="message.user.login.deleteBtn"/>' 
+       		            onclick="deleteUser('${user.id}')"/> 
        	</td>
        </tr>
      </table>

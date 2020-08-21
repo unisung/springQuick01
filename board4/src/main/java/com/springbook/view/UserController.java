@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springbook.biz.user.UserService;
 import com.springbook.biz.user.UserVO;
@@ -54,7 +55,7 @@ public class UserController {
 	
 	//회원정보 수정처리 후 로그인 페이지로 이동
 		@RequestMapping(value="/updateInfo.do",method=RequestMethod.POST)
-		public String updateInfoPro(@ModelAttribute("user")UserVO vo,Model model) {
+		public String updateInfoPro(@ModelAttribute("user")UserVO vo) {
 			//if 패스워드가 맞으면 db수정, 아니면 이전으로 이동.
 			UserVO user=userService.getUser(vo);
 			if(user!=null) {
@@ -67,4 +68,10 @@ public class UserController {
 			}
 		}
 
+		@RequestMapping(value="/deleteUser.do",method=RequestMethod.GET)
+		public String deleteUser(@RequestParam("id") String id) {// String id=request.getParameter("id")
+			userService.deleteUser(id);
+			return "redirect:logout.do";
+		}
+		
 }

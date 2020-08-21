@@ -34,4 +34,10 @@
    ]]>
  </update>
 
+<delete id="deleteUser" parameterType="java.lang.String">
+  <![CDATA[
+  delete users where id=#{id}
+  ]]>
+</delete>
+
 </mapper>
